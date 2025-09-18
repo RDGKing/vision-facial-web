@@ -1,0 +1,190 @@
+/* 🎨 Variables globales de color y estilo */
+:root{
+  --bg:#0e1116;         /* Fondo principal */
+  --surface:#141922;    /* Superficie navbar/footer */
+  --surface-2:#181e28;  /* Superficie de tarjetas/vidrio */
+  --line:#232a36;       /* Color de líneas/bordes */
+  --text:#e6e8ec;       /* Texto principal */
+  --muted:#a3aab6;      /* Texto secundario/desvanecido */
+  --accent:#5aa9ff;     /* Color acento (botones, links, sliders) */
+}
+
+/* Configuración general */
+html,body{
+  background:var(--bg);
+  color:var(--text);
+}
+*{box-sizing:border-box} /* Todos los elementos respetan box-sizing */
+a{
+  color:var(--accent);
+  text-decoration:none;
+}
+
+/* Barra de navegación y footer */
+.navbar,.footer{
+  background:var(--surface);
+  border-color:var(--line)!important;
+  border-style:solid;
+  border-width:0 0 1px 0; /* borde inferior */
+}
+.footer{border-width:1px 0 0 0} /* footer solo borde superior */
+
+/* Estilo de tarjetas y paneles "glass" */
+.glass,.card{
+  background:var(--surface-2);
+  border:1px solid var(--line);
+  border-radius:12px;
+  box-shadow:none;
+}
+.card .card-title{
+  font-weight:600;
+  margin-bottom:.5rem;
+}
+
+/* Contenedor general */
+.container{max-width:1320px}
+
+/* Área principal de video/canvas */
+#stage{
+  position:relative;
+  width:100%;
+  aspect-ratio:16/9;   /* relación inicial */
+  height:auto;
+  overflow:hidden;
+  border-radius:12px;
+  background:#0b0f16;
+  border:1px solid var(--line);
+}
+/* En pantallas grandes (>=992px), cambia proporción */
+@media (min-width:992px){
+  #stage{aspect-ratio:auto;height:75vh}
+}
+
+/* Video y canvases apilados */
+#video,#overlay,#out{
+  position:absolute;
+  inset:0;  /* ocupa todo el contenedor */
+  width:100%;
+  height:100%;
+  object-fit:cover; /* recorta y llena */
+}
+
+/* Etiqueta de estado abajo a la izquierda */
+.status-badge{
+  position:absolute;
+  left:10px;
+  bottom:10px;
+}
+
+/* Caja para interruptores o controles */
+.glass-control{
+  padding:.6rem .75rem;
+  background:var(--surface-2);
+  border:1px solid var(--line);
+  border-radius:10px;
+}
+
+/* Tipografías utilitarias */
+.small-label{font-size:.86rem;color:var(--muted)}
+.metric{font-variant-numeric:tabular-nums}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+
+/* Interruptor debug */
+.debug-chip{
+  display:flex;
+  align-items:center;
+  gap:.6rem;
+}
+.debug-chip .form-check-input{
+  width:3rem;
+  height:1.5rem;
+  cursor:pointer;
+  background-color:#0c1016;
+  border:1px solid var(--line);
+}
+/* Color acento cuando está activado */
+#debugToggle:checked{
+  background-color:var(--accent);
+  border-color:var(--accent);
+}
+.debug-chip .form-check-label{
+  margin:0;
+  padding:0;
+  color:var(--text);
+  font-weight:500;
+}
+/* Quita pseudo-elemento de Bootstrap */
+#debugToggle + .form-check-label::after{
+  content:"";
+  display:none;
+}
+
+/* Fila de estadísticas (parpadeos, boca, cejas) */
+.stat-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:.4rem .5rem;
+  border-radius:8px;
+  border:1px solid transparent;
+}
+.stat-row:hover{border-color:var(--line)} /* borde visible al pasar cursor */
+.stat-dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  display:inline-block;
+}
+/* Colores para cada tipo de métrica */
+.dot-eye{background:#ff6b6b}
+.dot-mouth{background:#d1d5db}
+.dot-brow{background:#7ee787}
+
+/* Estilos modernos para sliders */
+.range-modern{
+  appearance:none;
+  -webkit-appearance:none;
+  background:transparent;
+  height:1.5rem;
+}
+.range-modern:focus{outline:none}
+/* Línea de la pista */
+.range-modern::-webkit-slider-runnable-track{
+  height:4px;
+  border-radius:999px;
+  background:#2a3342;
+  border:1px solid var(--line);
+}
+.range-modern::-moz-range-track{
+  height:4px;
+  border-radius:999px;
+  background:#2a3342;
+  border:1px solid var(--line);
+}
+/* Estilo del "thumb" (botón redondo) */
+.range-modern::-webkit-slider-thumb{
+  -webkit-appearance:none;
+  appearance:none;
+  width:16px;
+  height:16px;
+  border-radius:50%;
+  background:#0e1219;
+  border:2px solid var(--accent);
+  margin-top:-7px; /* ajusta posición vertical */
+}
+.range-modern::-moz-range-thumb{
+  width:16px;
+  height:16px;
+  border-radius:50%;
+  background:#0e1219;
+  border:2px solid var(--accent);
+}
+
+/* Ajustes de Bootstrap sobrescritos */
+.text-bg-dark-subtle{
+  background:#111621!important;
+  color:var(--text)!important;
+}
+.border-secondary-subtle{
+  border-color:var(--line)!important;
+}
